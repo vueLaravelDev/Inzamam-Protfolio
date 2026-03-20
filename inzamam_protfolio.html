@@ -374,6 +374,39 @@
             width: 100%;
         }
         
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-nav .nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-nav .nav-link:last-child {
+            border-bottom: none;
+        }
+        
         /* Buttons */
         .btn-primary {
             display: inline-flex;
@@ -707,7 +740,8 @@
                     IH<span class="text-accent">.</span>
                 </a>
                 
-                <div class="nav-links flex items-center gap-8">
+                <!-- Desktop Navigation -->
+                <div class="nav-links hidden lg:flex items-center gap-8">
                     <a href="#about" class="nav-link active">About</a>
                     <a href="#services" class="nav-link">Services</a>
                     <a href="#portfolio" class="nav-link">Portfolio</a>
@@ -716,14 +750,29 @@
                 </div>
                 
                 <div class="flex items-center gap-4">
-                    <a href="InzamamCV.pdf" download class="btn-primary text-sm">
+                    <a href="InzamamCV.pdf" download class="hidden md:inline-flex btn-primary text-sm">
                         <i class="fas fa-download"></i>
-                        Download CV
+                        <span class="hidden lg:inline">Download CV</span>
                     </a>
-                    <button class="mobile-menu text-white text-2xl" id="mobileMenuBtn">
+                    <button class="mobile-menu text-white text-2xl p-2" id="mobileMenuBtn">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-nav hidden lg:hidden" id="mobileNav">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#about" class="block nav-link active py-2">About</a>
+                <a href="#services" class="block nav-link py-2">Services</a>
+                <a href="#portfolio" class="block nav-link py-2">Portfolio</a>
+                <a href="#experience" class="block nav-link py-2">Experience</a>
+                <a href="#contact" class="block nav-link py-2">Contact</a>
+                <a href="InzamamCV.pdf" download class="btn-primary text-sm w-full justify-center mt-4">
+                    <i class="fas fa-download"></i>
+                    Download CV
+                </a>
             </div>
         </div>
     </nav>
@@ -1566,6 +1615,34 @@
         }, { threshold: 0.1 });
         
         fadeElements.forEach(el => fadeObserver.observe(el));
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        if (mobileMenuBtn && mobileNav) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileNav.classList.toggle('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mobileNav.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+            
+            // Close mobile menu when clicking a link
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
         
         // Portfolio Filter Functionality
         const filterButtons = document.querySelectorAll('.portfolio-filter');
