@@ -1,1679 +1,478 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inzamam Ul Haq | Full Stack Developer</title>
-    <meta name="description" content="Full Stack Developer specializing in Laravel, Vue.js, and modern web technologies. Creating elegant, scalable digital solutions.">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0f172a',
-                        accent: '#c9a962',
-                        'accent-light': '#e8d5a3',
-                        dark: '#1e293b',
-                        light: '#f8fafc'
-                    },
-                    fontFamily: {
-                        display: ['Playfair Display', 'serif'],
-                        body: ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            overflow-x: hidden;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #c9a962 0%, #a88b4a 100%);
-            border-radius: 4px;
-        }
-        
-        /* Glass Effect */
-        .glass {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .glass-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .glass-card:hover {
-            background: rgba(30, 41, 59, 0.8);
-            border-color: rgba(201, 169, 98, 0.3);
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-        
-        /* Animated Background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(201, 169, 98, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
-                #0f172a;
-        }
-        
-        /* Floating Shapes */
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: float 20s ease-in-out infinite;
-            opacity: 0.3;
-        }
-        
-        .shape-1 {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, #c9a962 0%, #e8d5a3 100%);
-            top: 10%;
-            left: -10%;
-            animation-delay: 0s;
-        }
-        
-        .shape-2 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            top: 60%;
-            right: -5%;
-            animation-delay: -5s;
-        }
-        
-        .shape-3 {
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
-            bottom: 20%;
-            left: 30%;
-            animation-delay: -10s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -30px) scale(1.05); }
-            50% { transform: translate(-20px, 20px) scale(0.95); }
-            75% { transform: translate(20px, 30px) scale(1.02); }
-        }
-        
-        /* Hero Section */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            text-align: center;
-            z-index: 10;
-        }
-        
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #c9a962 50%, #ffffff 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s linear infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.5rem);
-            color: #94a3b8;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-        
-        .hero-typing {
-            display: inline-block;
-            border-right: 2px solid #c9a962;
-            padding-right: 5px;
-            animation: blink 0.7s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { border-color: #c9a962; }
-            51%, 100% { border-color: transparent; }
-        }
-        
-        /* Profile Image */
-        .profile-container {
-            position: relative;
-            width: 280px;
-            height: 280px;
-            margin: 0 auto 2rem;
-        }
-        
-        .profile-ring {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px solid #c9a962;
-            border-radius: 50%;
-            animation: rotate 10s linear infinite;
-        }
-        
-        .profile-ring::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: #c9a962;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(201, 169, 98, 0.5);
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(201, 169, 98, 0.3);
-            box-shadow: 0 0 40px rgba(201, 169, 98, 0.2);
-        }
-        
-        /* New Hero Styles */
-        .animate-spin-slow {
-            animation: spin 20s linear infinite;
-        }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #ffffff 0%, #c9a962 50%, #ffffff 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s linear infinite;
-        }
-        
-        .hero-subtitle {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-        
-        .typing-container {
-            min-height: 1.5em;
-        }
-        
-        .hero-typing {
-            border-right: 2px solid #c9a962;
-            padding-right: 5px;
-            animation: blink 0.7s infinite;
-            display: inline-block;
-        }
-        
-        @keyframes blink {
-            0%, 50% { border-color: #c9a962; }
-            51%, 100% { border-color: transparent; }
-        }
-        
-        /* Section Styles */
-        section {
-            padding: 100px 0;
-            position: relative;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #c9a962, transparent);
-        }
-        
-        .section-subtitle {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            max-width: 600px;
-        }
-        
-        /* Navigation */
-        .nav-glass {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-glass.scrolled {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.75rem 0;
-        }
-        
-        .nav-link {
-            position: relative;
-            color: #94a3b8;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: #c9a962;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: #c9a962;
-        }
-        
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        
-        /* Mobile Navigation */
-        .mobile-nav {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(15, 23, 42, 0.98);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideDown 0.3s ease;
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .mobile-nav .nav-link {
-            display: block;
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .mobile-nav .nav-link:last-child {
-            border-bottom: none;
-        }
-        
-        /* Buttons */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #c9a962 0%, #a88b4a 100%);
-            color: #0f172a;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(201, 169, 98, 0.3);
-        }
-        
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            background: transparent;
-            color: #c9a962;
-            font-weight: 600;
-            border: 2px solid #c9a962;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(201, 169, 98, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        /* Social Links */
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background: linear-gradient(135deg, #c9a962 0%, #a88b4a 100%);
-            color: #0f172a;
-            transform: translateY(-5px);
-            border-color: transparent;
-        }
-        
-        /* Skills */
-        .skill-bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-        
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #c9a962, #e8d5a3);
-            border-radius: 4px;
-            transition: width 1.5s ease;
-            width: 0;
-        }
-        
-        /* Timeline */
-        .timeline-item {
-            position: relative;
-            padding-left: 3rem;
-            padding-bottom: 3rem;
-            border-left: 2px solid rgba(201, 169, 98, 0.3);
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -9px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            background: #c9a962;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(201, 169, 98, 0.5);
-        }
-        
-        .timeline-item:last-child {
-            padding-bottom: 0;
-            border-left-color: transparent;
-        }
-        
-        /* Service Cards */
-        .service-card {
-            padding: 2.5rem;
-            border-radius: 20px;
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-        }
-        
-        .service-card:hover {
-            background: rgba(30, 41, 59, 0.8);
-            border-color: rgba(201, 169, 98, 0.3);
-            transform: translateY(-10px);
-        }
-        
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(201, 169, 98, 0.2), rgba(201, 169, 98, 0.05));
-            border-radius: 20px;
-            margin-bottom: 1.5rem;
-            font-size: 1.75rem;
-            color: #c9a962;
-        }
-        
-        /* Project Cards */
-        .project-card {
-            border-radius: 20px;
-            overflow: hidden;
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border-color: rgba(201, 169, 98, 0.3);
-        }
-        
-        .project-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-        
-        .project-content {
-            padding: 1.5rem;
-        }
-        
-        .project-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(201, 169, 98, 0.15);
-            color: #c9a962;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .project-tag:hover {
-            background: rgba(201, 169, 98, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        /* Portfolio Filter Buttons */
-        .portfolio-filter {
-            transition: all 0.3s ease;
-        }
-        
-        .portfolio-filter.active {
-            background: linear-gradient(135deg, #c9a962 0%, #a88b4a 100%);
-            color: #0f172a;
-            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
-        }
-        
-        .portfolio-filter:not(.active):hover {
-            background: rgba(201, 169, 98, 0.1);
-            border-color: rgba(201, 169, 98, 0.3);
-        }
-        
-        /* Contact Form */
-        .form-input {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: #f8fafc;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #c9a962;
-            box-shadow: 0 0 20px rgba(201, 169, 98, 0.1);
-        }
-        
-        .form-input::placeholder {
-            color: #64748b;
-        }
-        
-        /* Contact Info */
-        .contact-info {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(30, 41, 59, 0.5);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .contact-info:hover {
-            border-color: rgba(201, 169, 98, 0.3);
-            transform: translateX(10px);
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #c9a962, #a88b4a);
-            border-radius: 12px;
-            color: #0f172a;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-        
-        /* Stats */
-        .stat-item {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #c9a962;
-            line-height: 1;
-        }
-        
-        .stat-label {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .profile-container {
-                width: 200px;
-                height: 200px;
-            }
-        }
-        
-        /* Fade In Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inzamam Ul Haq | Full Stack Developer (Laravel, Vue.js, Inertia.js)</title>
+<meta name="description" content="Inzamam Ul Haq is a Full Stack Developer in Faisalabad, Pakistan with 4.5+ years of experience building POS, hospital and inventory systems with Laravel, Vue.js and Inertia.js.">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Inzamam Ul Haq | Full Stack Developer">
+<meta property="og:description" content="Laravel, Vue.js and Inertia.js developer building POS, hospital and inventory systems.">
+<meta property="og:image" content="protfolio.jpeg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Inzamam Ul Haq","jobTitle":"Full Stack Developer","worksFor":{"@type":"Organization","name":"Xelent Solutions"},"email":"mailto:inzamammalick501@gmail.com","telephone":"+923346081794","address":{"@type":"PostalAddress","addressLocality":"Faisalabad","addressCountry":"PK"},"knowsAbout":["Laravel","Vue.js","Inertia.js","PHP","MySQL","REST APIs","Tailwind CSS"],"sameAs":["https://www.linkedin.com/in/inzamam-malick-b8053a246/","https://github.com/inzamammalick501"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root{--bg:#000;--panel:#08090b;--line:#181b21;--text:#f3f6f9;--muted:#8a94a0;--soft:#b3bdc8;--neon:#18c8ff;--blue:#0a84ff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.logo{font-family:'Sora',sans-serif}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--neon);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#000}::-webkit-scrollbar-thumb{background:#1c2733;border-radius:4px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--neon);color:#001018;padding:8px 14px;border-radius:6px;z-index:99}.skip:focus{left:8px}
+
+nav{position:fixed;inset:0 0 auto 0;z-index:50;padding:18px 0;transition:.3s}
+nav.solid{background:rgba(0,0,0,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px 0}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-weight:700;font-size:1.15rem;letter-spacing:-.01em}.logo span{color:var(--neon)}
+.links{display:flex;gap:26px}
+.links a{color:var(--muted);font-size:.9rem;transition:color .2s;padding:4px 0;border-bottom:1px solid transparent}
+.links a:hover,.links a.on{color:var(--text);border-color:var(--neon)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:8px;font:600 .94rem 'Inter',sans-serif;border:1px solid transparent;cursor:pointer;transition:.25s}
+.btn-neon{background:var(--neon);color:#001018}.btn-neon:hover{background:#5ddcff;box-shadow:0 0 28px rgba(24,200,255,.4)}
+.btn-ghost{border-color:#2a303a;color:var(--text)}.btn-ghost:hover{border-color:var(--neon);color:var(--neon)}
+.btn-sm{padding:9px 18px;font-size:.86rem}
+.burger{display:none;background:none;border:0;color:var(--text);font-size:1.35rem;cursor:pointer;padding:6px}
+.drawer{display:none;background:#000;border-bottom:1px solid var(--line);padding:6px 28px 20px}
+.drawer.open{display:block}
+.drawer a{display:block;padding:13px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:110px 0 70px}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero-copy{max-width:600px}
+.role{color:var(--neon);font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.role::before{content:"";width:36px;height:2px;background:var(--neon)}
+h1{font-size:clamp(2.8rem,6.6vw,5.4rem);line-height:1.02;letter-spacing:-.04em;font-weight:700;margin-bottom:26px}
+.lead{color:var(--muted);font-size:1.15rem;max-width:520px;margin-bottom:26px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.chips span{padding:5px 13px;border:1px solid #232a34;border-radius:99px;font-size:.8rem;color:var(--soft)}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:52px}
+.facts{display:flex;border-top:1px solid var(--line);padding-top:26px}
+.facts div{padding-right:34px;margin-right:34px;border-right:1px solid var(--line)}
+.facts div:last-child{border:0;margin:0;padding:0}
+.facts strong{display:block;font:600 1.9rem/1.1 'Sora',sans-serif}
+.facts span{color:var(--muted);font-size:.86rem}
+.photo{position:absolute;top:0;right:0;bottom:0;width:45%;z-index:1;background:radial-gradient(60% 55% at 62% 38%,rgba(10,132,255,.32),transparent 75%)}
+.photo img,.photo .ph{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;-webkit-mask-image:linear-gradient(90deg,transparent,#000 36%),linear-gradient(0deg,transparent,#000 22%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 36%),linear-gradient(0deg,transparent,#000 22%);mask-composite:intersect}
+.photo .ph{display:grid;place-items:center;font:700 9rem 'Sora',sans-serif;color:var(--neon)}
+.photo::after{content:"";position:absolute;left:0;top:14%;bottom:14%;width:1px;background:linear-gradient(180deg,transparent,var(--neon),transparent)}
+.now{position:absolute;right:36px;bottom:42px;z-index:3;padding:16px 20px;border:1px solid #1f2a36;border-radius:12px;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);max-width:270px}
+.now small{display:flex;align-items:center;gap:9px;color:var(--neon);font-size:.8rem;font-weight:500;margin-bottom:4px}
+.now small i{width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px var(--neon)}
+.now p{font-size:.9rem;line-height:1.5}
+
+.strip{border-block:1px solid var(--line);background:var(--panel)}
+.strip ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 28px;padding:22px 0;color:var(--muted);font-weight:500;font-size:.95rem}
+.strip li{transition:color .2s}.strip li:hover{color:var(--neon)}
+
+section{padding:112px 0}
+.head{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;margin-bottom:56px;align-items:end}
+.head h2{font-size:clamp(2rem,4vw,3rem);line-height:1.1;letter-spacing:-.03em}
+.head p{color:var(--muted);max-width:480px}
+
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:start}
+.about>div>p{color:var(--soft);margin-bottom:18px;max-width:640px}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.pillars div{padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.pillars i{color:var(--neon);font-size:1.2rem;margin-bottom:12px;display:block}
+.pillars h3{font-size:1rem;margin-bottom:6px}
+.pillars p{color:var(--muted);font-size:.88rem;line-height:1.55;margin:0}
+.glance{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:8px 28px}
+.glance div{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.glance div:last-child{border:0}
+.glance dt{color:var(--muted);font-size:.9rem}
+.glance dd{text-align:right;font-weight:500;font-size:.93rem}
+
+.work{border-top:1px solid var(--line)}
+.item{display:grid;grid-template-columns:.7fr 1.5fr 1fr;gap:36px;padding:38px 20px;margin:0 -20px;border-bottom:1px solid var(--line);align-items:start;transition:background .3s}
+.item:hover{background:var(--panel)}.item:hover h3{color:var(--neon)}
+.cat{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:.9rem}
+.cat i{width:44px;height:44px;border-radius:10px;border:1px solid #1f2a36;display:grid;place-items:center;color:var(--neon);font-size:1.1rem;background:#05080c;flex:none}
+.item h3{font-size:1.4rem;letter-spacing:-.02em;margin-bottom:8px;transition:color .25s}
+.item p{color:var(--muted);font-size:.96rem;max-width:520px}
+.item .for{color:var(--soft);font-size:.9rem;margin-top:10px}
+.item .for b{color:var(--text);font-weight:600}
+.feat{list-style:none;display:grid;gap:6px;margin-top:16px;font-size:.88rem;color:var(--soft)}
+.feat li{position:relative;padding-left:18px}
+.feat li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1px;background:var(--neon)}
+.stack{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.stack span{padding:5px 13px;border:1px solid #232a34;border-radius:99px;font-size:.8rem;color:var(--soft)}
+
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+.s{display:grid;grid-template-columns:44px 1fr;gap:20px;padding:30px 0;border-top:1px solid var(--line)}
+.s i{color:var(--neon);font-size:1.3rem;padding-top:4px}
+.s h3{font-size:1.1rem;margin-bottom:6px}
+.s p{color:var(--muted);font-size:.94rem}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.steps div{padding:32px 28px 8px 0}
+.steps span{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--neon);border-radius:50%;color:var(--neon);font:600 .95rem 'Sora',sans-serif;margin-bottom:18px}
+.steps h3{font-size:1.1rem;margin-bottom:8px}
+.steps p{color:var(--muted);font-size:.93rem}
+
+.eng{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.eng div{padding:30px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.eng i{color:var(--neon);font-size:1.3rem;margin-bottom:16px;display:block}
+.eng h3{font-size:1.1rem;margin-bottom:8px}
+.eng p{color:var(--muted);font-size:.93rem;margin-bottom:14px}
+.eng ul{list-style:none;display:grid;gap:6px;color:var(--soft);font-size:.88rem}
+.eng li{position:relative;padding-left:18px}
+.eng li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1px;background:var(--neon)}
+
+.skills{background:var(--panel);border-block:1px solid var(--line)}
+.sk{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.sk>div{padding:30px;border:1px solid var(--line);border-radius:14px;background:#000}
+.sk h3{font-size:1rem;margin-bottom:18px;display:flex;gap:12px;align-items:center}
+.sk h3 i{color:var(--neon)}
+.sk ul{list-style:none;display:grid;gap:10px;color:var(--soft);font-size:.95rem}
+.sk li{border-bottom:1px solid var(--line);padding-bottom:10px}.sk li:last-child{border:0}
+
+.xp{display:grid;grid-template-columns:1fr 2fr;gap:40px;padding:38px 0;border-top:1px solid var(--line)}
+.xp:last-child{border-bottom:1px solid var(--line)}
+.xp .when{color:var(--neon);font-weight:500}
+.xp .when small{display:block;color:var(--muted);font-weight:400;margin-top:2px}
+.xp h3{font-size:1.35rem;margin-bottom:2px}
+.xp .org{color:var(--muted);margin-bottom:18px}
+.xp ul{list-style:none;display:grid;gap:10px;color:var(--soft);font-size:.96rem}
+.xp li{position:relative;padding-left:22px}
+.xp li::before{content:"";position:absolute;left:0;top:.75em;width:9px;height:1px;background:var(--neon)}
+
+.faq{max-width:820px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 0;font:600 1.05rem 'Sora',sans-serif;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--neon);font-size:1.5rem;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);padding:0 40px 24px 0;max-width:700px}
+
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.contact h2{font-size:clamp(2.2rem,4.4vw,3.4rem);line-height:1.08;letter-spacing:-.035em;margin-bottom:22px}
+.contact>div>p{color:var(--muted);margin-bottom:34px;max-width:440px}
+.mail{display:inline-block;font:600 1.25rem 'Sora',sans-serif;border-bottom:2px solid var(--neon);padding-bottom:4px;margin-bottom:34px;word-break:break-all}
+.mail:hover{color:var(--neon)}
+.det{display:grid;gap:16px;margin-bottom:30px;color:var(--muted)}
+.det div{display:flex;gap:16px;align-items:center}
+.det i{color:var(--neon);width:20px;text-align:center}
+.social{display:flex;gap:10px}
+.social a{width:44px;height:44px;border:1px solid #232a34;border-radius:10px;display:grid;place-items:center;color:var(--muted);transition:.25s}
+.social a:hover{border-color:var(--neon);color:var(--neon)}
+form{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:34px;display:grid;gap:16px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-size:.84rem;color:var(--muted);margin-bottom:6px}
+input,textarea,select{width:100%;padding:13px 15px;background:#000;border:1px solid #1f242c;border-radius:9px;color:var(--text);font:inherit;font-size:.95rem;transition:.2s}
+input:focus,textarea:focus,select:focus{outline:0;border-color:var(--neon);box-shadow:0 0 0 3px rgba(24,200,255,.12)}
+textarea{min-height:130px;resize:vertical}
+.hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+form .btn{justify-content:center}
+.fstatus{font-size:.9rem;min-height:1.3em;color:var(--muted)}
+.fstatus.ok{color:#4ade80}.fstatus.err{color:#ff7a7a}
+.btn[disabled]{opacity:.6;cursor:wait}
+
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.88rem}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+.top{position:fixed;right:22px;bottom:22px;width:44px;height:44px;border-radius:50%;border:1px solid #2a303a;background:rgba(0,0,0,.8);color:var(--neon);display:grid;place-items:center;opacity:0;pointer-events:none;transition:.25s;z-index:40;cursor:pointer}
+.top.show{opacity:1;pointer-events:auto}
+
+.in{opacity:0;transform:translateY(16px);animation:in .8s ease forwards}
+.in:nth-child(2){animation-delay:.08s}.in:nth-child(3){animation-delay:.16s}.in:nth-child(4){animation-delay:.24s}.in:nth-child(5){animation-delay:.32s}.in:nth-child(6){animation-delay:.4s}
+@keyframes in{to{opacity:1;transform:none}}
+
+@media(max-width:960px){
+  .links,.nav-cta{display:none}.burger{display:block}
+  .hero{flex-direction:column;align-items:stretch;padding:80px 0 56px}
+  .photo{position:relative;width:100%;height:430px;margin-bottom:34px}
+  .photo img,.photo .ph{-webkit-mask-image:linear-gradient(180deg,#000 60%,transparent);mask-image:linear-gradient(180deg,#000 60%,transparent);-webkit-mask-composite:source-over;mask-composite:add}
+  .photo::after{display:none}
+  .now{left:24px;right:auto;bottom:50px}
+  .head,.contact,.xp,.svc,.sk,.about,.eng{grid-template-columns:1fr}
+  .about{gap:36px}
+  .item{grid-template-columns:1fr;gap:18px;margin:0;padding:30px 0}
+  .stack{justify-content:flex-start}
+  .head{gap:14px}.xp{gap:10px}
+  .steps{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  section{padding:76px 0}
+  .f2,.pillars,.steps{grid-template-columns:1fr}
+  .facts div{padding-right:20px;margin-right:20px}
+  .strip ul{justify-content:flex-start}
+  form{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.in{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
+<a class="skip" href="#about">Skip to content</a>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a href="#home" class="logo">Inzamam<span>.</span></a>
+    <div class="links">
+      <a href="#about">About</a><a href="#work">Work</a><a href="#services">Services</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
     </div>
-    
-    <!-- Navigation -->
-    <nav class="nav-glass" id="navbar">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-center justify-between">
-                <a href="#" class="text-2xl font-display font-bold text-white">
-                    IH<span class="text-accent">.</span>
-                </a>
-                
-                <!-- Desktop Navigation -->
-                <div class="nav-links hidden lg:flex items-center gap-8">
-                    <a href="#about" class="nav-link active">About</a>
-                    <a href="#services" class="nav-link">Services</a>
-                    <a href="#portfolio" class="nav-link">Portfolio</a>
-                    <a href="#experience" class="nav-link">Experience</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
-                
-                <div class="flex items-center gap-4">
-                    <a href="InzamamCV.pdf" download class="hidden md:inline-flex btn-primary text-sm">
-                        <i class="fas fa-download"></i>
-                        <span class="hidden lg:inline">Download CV</span>
-                    </a>
-                    <button class="mobile-menu text-white text-2xl p-2" id="mobileMenuBtn">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="InzamamCV.pdf" download class="btn btn-ghost btn-sm nav-cta"><i class="fas fa-download"></i> CV</a>
+      <a href="#contact" class="btn btn-neon btn-sm nav-cta">Hire me</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+  <div class="drawer" id="drawer">
+    <a href="#about">About</a><a href="#work">Work</a><a href="#services">Services</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    <a href="InzamamCV.pdf" download style="color:var(--neon);border:0">Download CV</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="role in">Full Stack Developer</div>
+      <h1 class="in">Inzamam Ul Haq</h1>
+      <p class="lead in">I build business software with Laravel and Vue.js: point of sale, hospital and inventory systems that teams use every day.</p>
+      <div class="chips in"><span>Laravel</span><span>Vue.js</span><span>Inertia.js</span><span>MySQL</span><span>REST APIs</span></div>
+      <div class="cta in">
+        <a href="#work" class="btn btn-neon">View my work</a>
+        <a href="#contact" class="btn btn-ghost">Contact me</a>
+      </div>
+      <div class="facts in">
+        <div><strong>4.5+</strong><span>Years of experience</span></div>
+        <div><strong>25+</strong><span>Projects delivered</span></div>
+        <div><strong>15+</strong><span>Clients served</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="photo in">
+    <img src="protfolio.jpeg" alt="Portrait of Inzamam Ul Haq" onerror="this.outerHTML='<div class=ph>IH</div>'">
+    <div class="now"><small><i></i> Open to new projects</small><p>Web Developer at Xelent Solutions, based in Faisalabad, Pakistan.</p></div>
+  </div>
+</header>
+
+<div class="strip"><div class="wrap"><ul>
+  <li>Laravel</li><li>PHP</li><li>Vue.js</li><li>Inertia.js</li><li>JavaScript</li><li>MySQL</li><li>Tailwind CSS</li><li>REST APIs</li>
+</ul></div></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="head"><h2>About me</h2><p>Practical software for the people who run clinics, shops, kitchens and warehouses.</p></div>
+    <div class="about">
+      <div>
+        <p>I'm a Full Stack Developer with 4.5+ years of experience building web applications with Laravel, Vue.js and Inertia.js. I work across the whole stack: database design, APIs, business logic and the screens people use all day.</p>
+        <p>Most of my work is operational software such as POS, hospital management and inventory systems. These systems handle real money, real stock and real patients, so I focus on accuracy, speed and clear workflows.</p>
+        <p>I write clean, maintainable code and explain technical decisions in plain language, so clients always know what is being built and why.</p>
+        <div class="pillars">
+          <div><i class="fas fa-bullseye"></i><h3>Business first</h3><p>I start from how your team works, then choose the technology.</p></div>
+          <div><i class="fas fa-code-branch"></i><h3>Maintainable code</h3><p>Structured, readable and ready for the next developer.</p></div>
+          <div><i class="fas fa-comments"></i><h3>Clear communication</h3><p>Regular updates, honest timelines, no surprises.</p></div>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-nav hidden lg:hidden" id="mobileNav">
-            <div class="px-6 py-4 space-y-4">
-                <a href="#about" class="block nav-link active py-2">About</a>
-                <a href="#services" class="block nav-link py-2">Services</a>
-                <a href="#portfolio" class="block nav-link py-2">Portfolio</a>
-                <a href="#experience" class="block nav-link py-2">Experience</a>
-                <a href="#contact" class="block nav-link py-2">Contact</a>
-                <a href="InzamamCV.pdf" download class="btn-primary text-sm w-full justify-center mt-4">
-                    <i class="fas fa-download"></i>
-                    Download CV
-                </a>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Hero Section -->
-    <section class="hero-section" id="home">
-        <div class="max-w-7xl mx-auto px-6 w-full">
-            <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[100vh] pt-20">
-                <!-- Left Content -->
-                <div class="hero-content text-center lg:text-left order-2 lg:order-1" data-aos="fade-right">
-                    <div class="inline-block px-4 py-2 bg-accent/10 rounded-full text-accent font-medium text-sm mb-6">
-                        <i class="fas fa-code mr-2"></i>Full Stack Developer
-                    </div>
-                    
-                    <h1 class="hero-title text-5xl lg:text-7xl mb-6 leading-tight">
-                        Building <span class="text-accent">Digital</span><br>Experiences
-                    </h1>
-                    
-                    <div class="mb-8">
-                        <p class="hero-subtitle text-lg mb-4 max-w-xl mx-auto lg:mx-0">
-                            I craft robust, scalable web solutions that transform businesses and deliver exceptional user experiences.
-                        </p>
-                        <p class="typing-container text-xl lg:text-2xl font-medium">
-                            <span class="text-white">Specialized in</span>
-                            <span class="text-accent hero-typing ml-2" id="typingText"></span>
-                        </p>
-                    </div>
-                    
-                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
-                        <a href="#portfolio" class="btn-primary">
-                            <i class="fas fa-briefcase"></i>
-                            View My Work
-                        </a>
-                        <a href="#contact" class="btn-secondary">
-                            <i class="fas fa-envelope"></i>
-                            Get In Touch
-                        </a>
-                    </div>
-                    
-                    <!-- Stats -->
-                    <div class="flex flex-wrap justify-center lg:justify-start gap-8 mt-8 pt-8 border-t border-gray-800">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-accent font-display">3.5+</div>
-                            <div class="text-gray-500 text-sm">Years Experience</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-accent font-display">25+</div>
-                            <div class="text-gray-500 text-sm">Projects</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-accent font-display">15+</div>
-                            <div class="text-gray-500 text-sm">Clients</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Social Links -->
-                    <div class="flex justify-center lg:justify-start gap-4 mt-8">
-                        <a href="https://www.linkedin.com/in/inzamam-malick-b8053a246/" target="_blank" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/inzamammalick501" target="_blank" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.facebook.com/malick.inzamamulhaq" target="_blank" class="social-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com/inzamam976/" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Right Profile Image -->
-                <div class="order-1 lg:order-2 flex justify-center" data-aos="fade-left">
-                    <div class="relative">
-                        <!-- Animated Background Circles -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-accent/20 via-purple-500/20 to-blue-500/20 rounded-full blur-3xl scale-150 animate-pulse"></div>
-                        
-                        <!-- Main Image Container -->
-                        <div class="relative w-72 h-72 lg:w-96 lg:h-96">
-                            <!-- Outer Ring -->
-                            <div class="absolute inset-0 rounded-full border-2 border-accent/30 animate-spin-slow"></div>
-                            
-                            <!-- Middle Ring -->
-                            <div class="absolute -inset-4 rounded-full border border-dashed border-accent/40 animate-spin" style="animation-direction: reverse; animation-duration: 15s;"></div>
-                            
-                            <!-- Inner Container -->
-                            <div class="absolute inset-2 rounded-full overflow-hidden border-4 border-dark/50 shadow-2xl">
-                                <img src="protfolio.jpeg" alt="Inzamam Ul Haq" class="w-full h-full object-cover">
-                            </div>
-                            
-                            <!-- Floating Badge 1 -->
-                            <div class="absolute -top-4 -right-4 glass-card rounded-full px-4 py-2 animate-bounce">
-                                <i class="fab fa-laravel text-red-500 text-xl"></i>
-                            </div>
-                            
-                            <!-- Floating Badge 2 -->
-                            <div class="absolute -bottom-4 -left-4 glass-card rounded-full px-4 py-2 animate-bounce" style="animation-delay: 0.5s;">
-                                <i class="fab fa-vuejs text-green-500 text-xl"></i>
-                            </div>
-                            
-                            <!-- Floating Badge 3 -->
-                            <div class="absolute top-1/2 -right-12 glass-card rounded-full px-4 py-2 animate-bounce" style="animation-delay: 1s;">
-                                <i class="fab fa-js text-yellow-500 text-xl"></i>
-                            </div>
-                        </div>
-                        
-                        <!-- Decorative Elements -->
-                        <div class="absolute top-10 -left-8 w-16 h-16 bg-accent/10 rounded-lg rotate-12 animate-pulse"></div>
-                        <div class="absolute bottom-10 -right-8 w-20 h-20 bg-purple-500/10 rounded-lg -rotate-12 animate-pulse" style="animation-delay: 0.5s;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="scroll-indicator text-accent">
-            <i class="fas fa-chevron-down text-2xl"></i>
-        </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="pt-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="fade-in" data-aos="fade-right">
-                    <h2 class="section-title">About Me</h2>
-                    <p class="section-subtitle">Crafting digital experiences that matter</p>
-                    
-                    <div class="space-y-6 text-gray-300 leading-relaxed">
-                        <p>
-                            I'm a passionate <span class="text-accent font-semibold">Full Stack Developer</span> with 3.5+ years of experience specializing in Laravel and Vue.js. I create robust, scalable web applications with intuitive user interfaces that deliver exceptional user experiences.
-                        </p>
-                        <p>
-                            My expertise spans both frontend and backend development, enabling me to build complete digital solutions from concept to deployment. I'm dedicated to writing clean, maintainable code and staying updated with the latest web technologies.
-                        </p>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-6 mt-8">
-                        <div class="glass-card rounded-xl p-4 text-center">
-                            <div class="text-accent text-2xl font-bold font-display">3.5+</div>
-                            <div class="text-gray-400 text-sm">Years Experience</div>
-                        </div>
-                        <div class="glass-card rounded-xl p-4 text-center">
-                            <div class="text-accent text-2xl font-bold font-display">20+</div>
-                            <div class="text-gray-400 text-sm">Projects Completed</div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <h4 class="text-white font-semibold mb-4">Core Technologies</h4>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">Laravel</span>
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">Vue.js</span>
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">Inertia.js</span>
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">PHP</span>
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">JavaScript</span>
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">jQuery</span>
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">HTML5</span>
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">CSS3</span>
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">MySQL</span>
-                            <span class="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium">Tailwind CSS</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="fade-in" data-aos="fade-left">
-                    <div class="glass-card rounded-2xl p-8">
-                        <h3 class="text-xl font-semibold text-white mb-6">Professional Skills</h3>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Laravel</span>
-                                    <span class="text-accent">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="90"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Inertia.js</span>
-                                    <span class="text-accent">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="85"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Vue.js</span>
-                                    <span class="text-accent">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="85"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">PHP</span>
-                                    <span class="text-accent">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="90"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">JavaScript</span>
-                                    <span class="text-accent">88%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="88"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">jQuery</span>
-                                    <span class="text-accent">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="85"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">HTML5</span>
-                                    <span class="text-accent">95%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="95"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">CSS3</span>
-                                    <span class="text-accent">95%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="95"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">MySQL</span>
-                                    <span class="text-accent">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="85"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Bootstrap/Tailwind</span>
-                                    <span class="text-accent">95%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-progress="95"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Services Section -->
-    <section id="services">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="section-title">My Services</h2>
-                <p class="section-subtitle mx-auto">Comprehensive web development solutions tailored to your business needs</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="service-card fade-in" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Web Development</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Custom web applications built with Laravel and Vue.js for optimal performance and scalability. From simple websites to complex web apps.
-                    </p>
-                </div>
-                
-                <div class="service-card fade-in" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Responsive Design</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Beautiful, responsive designs that work perfectly on all devices. Using Tailwind CSS and Bootstrap for pixel-perfect interfaces.
-                    </p>
-                </div>
-                
-                <div class="service-card fade-in" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">API Development</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Robust RESTful API development and integration services. Secure, well-documented APIs that power your applications.
-                    </p>
-                </div>
-                
-                <div class="service-card fade-in" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Database Design</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Efficient database architecture and optimization. I design schemas that ensure data integrity while maximizing performance.
-                    </p>
-                </div>
-                
-                <div class="service-card fade-in" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Performance Optimization</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Speed optimization for existing websites and applications. I identify bottlenecks and implement solutions to improve performance.
-                    </p>
-                </div>
-                
-                <div class="service-card fade-in" data-aos="fade-up" data-aos-delay="600">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Technical Support</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Ongoing maintenance and support for your web applications. Reliable technical support to ensure smooth operations.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="section-title">My Portfolio</h2>
-                <p class="section-subtitle mx-auto">Showcasing projects that demonstrate my expertise and passion</p>
-            </div>
-            
-            <!-- Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
-                <button class="portfolio-filter active px-6 py-2 rounded-full bg-accent text-primary font-medium text-sm">All Projects</button>
-                <button class="portfolio-filter px-6 py-2 rounded-full bg-white/5 text-gray-300 font-medium text-sm hover:bg-white/10 transition-all">Web Apps</button>
-                <button class="portfolio-filter px-6 py-2 rounded-full bg-white/5 text-gray-300 font-medium text-sm hover:bg-white/10 transition-all">POS Systems</button>
-                <button class="portfolio-filter px-6 py-2 rounded-full bg-white/5 text-gray-300 font-medium text-sm hover:bg-white/10 transition-all">Enterprise</button>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card fade-in group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative overflow-hidden rounded-t-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 h-64 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                            <i class="fas fa-pills text-7xl text-white/80"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                            <a href="#" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-all transform hover:scale-110">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-all transform hover:scale-110">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                        <div class="absolute top-4 right-4 px-3 py-1 bg-accent text-primary text-xs font-bold rounded-full">Featured</div>
-                    </div>
-                    <div class="project-content p-6 bg-dark/50">
-                        <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">Pharmacy POS System</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                            Comprehensive Pharmacy Point of Sale system with inventory management, sales tracking, customer management, and receipt generation.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">Laravel</span>
-                            <span class="project-tag">Vue.js</span>
-                            <span class="project-tag">MySQL</span>
-                        </div>
-                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-white transition-colors group/link">
-                            View Case Study <i class="fas fa-arrow-right ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card fade-in group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative overflow-hidden rounded-t-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 h-64 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                            <i class="fas fa-utensils text-7xl text-white/80"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                            <a href="#" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-all transform hover:scale-110">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-all transform hover:scale-110">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content p-6 bg-dark/50">
-                        <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">Restaurant POS System</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                            Advanced Restaurant POS with table management, order tracking, menu customization, and real-time kitchen display systems.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">Laravel</span>
-                            <span class="project-tag">Vue.js</span>
-                            <span class="project-tag">WebSockets</span>
-                        </div>
-                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-white transition-colors group/link">
-                            View Case Study <i class="fas fa-arrow-right ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card fade-in group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="relative overflow-hidden rounded-t-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 h-64 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                            <i class="fas fa-hospital text-7xl text-white/80"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                            <a href="#" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-all transform hover:scale-110">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-all transform hover:scale-110">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content p-6 bg-dark/50">
-                        <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">Hospital Management System</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                            Comprehensive HMS with modules for OPD, OT, Inventory, and Lab Management with responsive interfaces and custom reports.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">Laravel</span>
-                            <span class="project-tag">Vue.js</span>
-                            <span class="project-tag">MySQL</span>
-                        </div>
-                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-white transition-colors group/link">
-                            View Case Study <i class="fas fa-arrow-right ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 4 -->
-                <div class="project-card fade-in group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="relative overflow-hidden rounded-t-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 h-64 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                            <i class="fas fa-scroll text-7xl text-white/80"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                            <a href="#" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-all transform hover:scale-110">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-accent hover:text-primary transition-all transform hover:scale-110">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content p-6 bg-dark/50">
-                        <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">Textile Inventory System</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                            Comprehensive Textile Inventory Management System with stock tracking, supplier management, fabric categorization, and real-time inventory updates.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-tag">Laravel</span>
-                            <span class="project-tag">Vue.js</span>
-                            <span class="project-tag">MySQL</span>
-                        </div>
-                        <a href="#" class="inline-flex items-center text-accent font-medium hover:text-white transition-colors group/link">
-                            View Case Study <i class="fas fa-arrow-right ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- View More -->
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="500">
-                <a href="#" class="btn-secondary">
-                    <i class="fas fa-layer-group"></i>
-                    View All Projects
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="section-title">Experience & Education</h2>
-                <p class="section-subtitle mx-auto">My professional journey and educational background</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Experience -->
-                <div class="fade-in" data-aos="fade-right">
-                    <h3 class="text-2xl font-semibold text-white mb-8 flex items-center">
-                        <i class="fas fa-briefcase text-accent mr-3"></i>
-                        Work Experience
-                    </h3>
-                    
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="glass-card rounded-xl p-6">
-                                <h4 class="text-xl font-semibold text-white">Web Developer</h4>
-                                <p class="text-accent font-medium mb-2">Xelent Solutions | 2022 – Present</p>
-                                <ul class="text-gray-400 text-sm space-y-2">
-                                    <li>• Designed and developed a Pharmacy POS system with real-time features</li>
-                                    <li>• Led development of Hospital Management System with comprehensive modules</li>
-                                    <li>• Developed Textile Inventory Management System for efficient stock control</li>
-                                    <li>• Collaborated with cross-functional teams for user-centered solutions</li>
-                                    <li>• Implemented secure API integrations for third-party services</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Education -->
-                <div class="fade-in" data-aos="fade-left">
-                    <h3 class="text-2xl font-semibold text-white mb-8 flex items-center">
-                        <i class="fas fa-graduation-cap text-accent mr-3"></i>
-                        Education
-                    </h3>
-                    
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="glass-card rounded-xl p-6">
-                                <h4 class="text-xl font-semibold text-white">Associate Degree in Information Technology</h4>
-                                <p class="text-accent font-medium mb-2">GCUF | 2020 – 2022</p>
-                                <p class="text-gray-400 text-sm">
-                                    Focused on software development, database systems, and web technologies. Completed coursework in advanced programming, algorithms, and system design.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-                <div class="glass-card rounded-xl p-6 text-center fade-in" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-number">3.5+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="glass-card rounded-xl p-6 text-center fade-in" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-number">25+</div>
-                    <div class="stat-label">Projects Completed</div>
-                </div>
-                <div class="glass-card rounded-xl p-6 text-center fade-in" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Happy Clients</div>
-                </div>
-                <div class="glass-card rounded-xl p-6 text-center fade-in" data-aos="fade-up" data-aos-delay="400">
-                    <div class="stat-number">8+</div>
-                    <div class="stat-label">Awards Won</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle mx-auto">Let's discuss your next project or collaboration opportunity</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Contact Info -->
-                <div class="fade-in" data-aos="fade-right">
-                    <div class="space-y-6">
-                        <div class="contact-info">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold">Email</h4>
-                                <a href="mailto:inzamammalick501@gmail.com" class="text-gray-400 hover:text-accent transition-colors">
-                                    inzamammalick501@gmail.com
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-info">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold">Phone</h4>
-                                <a href="tel:+923346081794" class="text-gray-400 hover:text-accent transition-colors">
-                                    +92 334-6081794
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-info">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold">Location</h4>
-                                <p class="text-gray-400">Faisalabad, Pakistan</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-info">
-                            <div class="contact-icon">
-                                <i class="fab fa-linkedin-in"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-semibold">LinkedIn</h4>
-                                <a href="https://www.linkedin.com/in/inzamam-malick-b8053a246/" target="_blank" class="text-gray-400 hover:text-accent transition-colors">
-                                    linkedin.com/in/inzamam-malick
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <h4 class="text-white font-semibold mb-4">Follow Me</h4>
-                        <div class="flex gap-4">
-                            <a href="https://www.linkedin.com/in/inzamam-malick-b8053a246/" target="_blank" class="social-link">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://github.com/inzamammalick501" target="_blank" class="social-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.facebook.com/malick.inzamamulhaq" target="_blank" class="social-link">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://www.instagram.com/inzamam976/" target="_blank" class="social-link">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Contact Form -->
-                <div class="fade-in" data-aos="fade-left">
-                    <form class="glass-card rounded-2xl p-8">
-                        <h3 class="text-2xl font-semibold text-white mb-6">Send a Message</h3>
-                        
-                        <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <input type="text" placeholder="Your Name" class="form-input">
-                            </div>
-                            <div>
-                                <input type="email" placeholder="Your Email" class="form-input">
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <input type="text" placeholder="Subject" class="form-input">
-                        </div>
-                        
-                        <div class="mb-6">
-                            <textarea rows="5" placeholder="Your Message" class="form-input resize-none"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-primary w-full justify-center">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="py-8 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="text-white font-display text-xl font-bold">
-                    IH<span class="text-accent">.</span>
-                </div>
-                
-                <p class="text-gray-400 text-sm">
-                    © 2024 Inzamam Ul Haq. All rights reserved.
-                </p>
-                
-                <div class="flex gap-4">
-                    <a href="https://www.linkedin.com/in/inzamam-malick-b8053a246/" target="_blank" class="social-link w-10 h-10">
-                        <i class="fab fa-linkedin-in text-sm"></i>
-                    </a>
-                    <a href="https://github.com/inzamammalick501" target="_blank" class="social-link w-10 h-10">
-                        <i class="fab fa-github text-sm"></i>
-                    </a>
-                    <a href="https://www.facebook.com/malick.inzamamulhaq" target="_blank" class="social-link w-10 h-10">
-                        <i class="fab fa-facebook-f text-sm"></i>
-                    </a>
-                    <a href="https://www.instagram.com/inzamam976/" target="_blank" class="social-link w-10 h-10">
-                        <i class="fab fa-instagram text-sm"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- AOS Animation Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100,
-            easing: 'ease-out-cubic'
-        });
-        
-        // Typing Effect
-        const texts = ['Laravel Development', 'Vue.js Solutions', 'Inertia.js Apps', 'PHP Systems', 'Full Stack Development', 'Web Applications'];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingElement = document.getElementById('typingText');
-        
-        function typeEffect() {
-            const currentText = texts[textIndex];
-            
-            if (isDeleting) {
-                typingElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            
-            if (!isDeleting && charIndex === currentText.length) {
-                isDeleting = true;
-                setTimeout(typeEffect, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-                setTimeout(typeEffect, 500);
-            } else {
-                setTimeout(typeEffect, isDeleting ? 50 : 100);
-            }
-        }
-        
-        typeEffect();
-        
-        // Navigation Scroll Effect
-        const navbar = document.getElementById('navbar');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-        
-        // Smooth Scroll for Navigation Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-        
-        // Active Navigation Link
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Skill Bars Animation
-        const skillBars = document.querySelectorAll('.skill-progress');
-        
-        const observerOptions = {
-            threshold: 0.5
-        };
-        
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progress = entry.target.getAttribute('data-progress');
-                    entry.target.style.width = progress + '%';
-                }
-            });
-        }, observerOptions);
-        
-        skillBars.forEach(bar => {
-            skillObserver.observe(bar);
-        });
-        
-        // Fade In Animation
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        fadeElements.forEach(el => fadeObserver.observe(el));
-        
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        
-        if (mobileMenuBtn && mobileNav) {
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileNav.classList.toggle('hidden');
-                const icon = mobileMenuBtn.querySelector('i');
-                if (mobileNav.classList.contains('hidden')) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                } else {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                }
-            });
-            
-            // Close mobile menu when clicking a link
-            mobileNav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileNav.classList.add('hidden');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                });
-            });
-        }
-        
-        // Portfolio Filter Functionality
-        const filterButtons = document.querySelectorAll('.portfolio-filter');
-        const projectCards = document.querySelectorAll('.project-card');
-        
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons
-                filterButtons.forEach(b => {
-                    b.classList.remove('active');
-                    b.classList.add('bg-white/5', 'text-gray-300');
-                });
-                
-                // Add active class to clicked button
-                this.classList.add('active');
-                this.classList.remove('bg-white/5', 'text-gray-300');
-                
-                const filter = this.textContent.trim();
-                
-                // Filter projects with animation
-                projectCards.forEach(card => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 300);
-                });
-            });
-        });
-    </script>
+      </div>
+      <dl class="glance">
+        <div><dt>Experience</dt><dd>4.5+ years</dd></div>
+        <div><dt>Focus</dt><dd>Laravel, Vue.js, Inertia.js</dd></div>
+        <div><dt>Industries</dt><dd>Healthcare, retail, hospitality, textile</dd></div>
+        <div><dt>Delivered</dt><dd>25+ projects for 15+ clients</dd></div>
+        <div><dt>Languages</dt><dd>English, Urdu</dd></div>
+        <div><dt>Location</dt><dd>Faisalabad, Pakistan</dd></div>
+        <div><dt>Works with</dt><dd>Clients in Pakistan and worldwide</dd></div>
+        <div><dt>Reply time</dt><dd>Within 24 hours</dd></div>
+        <div><dt>Status</dt><dd>Open to new projects</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><h2>Selected work</h2><p>Four systems built for pharmacies, restaurants, hospitals and textile businesses.</p></div>
+    <div class="work">
+      <article class="item"><div class="cat"><i class="fas fa-pills"></i> Point of sale</div><div><h3>Pharmacy POS system</h3><p>Sales tracking, inventory management, customer records and receipt generation in one system.</p><p class="for"><b>Built for:</b> pharmacies that need fast billing and tight control over expiring stock.</p><ul class="feat"><li>Barcode-ready billing and receipts</li><li>Stock alerts and batch tracking</li><li>Daily sales and profit reports</li></ul></div><div class="stack"><span>Laravel</span><span>Vue.js</span><span>MySQL</span></div></article>
+      <article class="item"><div class="cat"><i class="fas fa-utensils"></i> Point of sale</div><div><h3>Restaurant POS system</h3><p>Table management, order tracking, menu customization and a real-time kitchen display.</p><p class="for"><b>Built for:</b> restaurants where the floor and the kitchen need to stay in sync.</p><ul class="feat"><li>Live order sync with the kitchen</li><li>Table and bill management</li><li>Menu and pricing control</li></ul></div><div class="stack"><span>Laravel</span><span>Vue.js</span><span>WebSockets</span></div></article>
+      <article class="item"><div class="cat"><i class="fas fa-hospital"></i> Enterprise</div><div><h3>Hospital management system</h3><p>Modules for OPD, operation theatre, inventory and lab, with custom reports and responsive screens.</p><p class="for"><b>Built for:</b> hospitals that want patient, lab and theatre records in one place.</p><ul class="feat"><li>Role-based access for staff</li><li>Patient, lab and OT workflows</li><li>Custom printable reports</li></ul></div><div class="stack"><span>Laravel</span><span>Vue.js</span><span>MySQL</span></div></article>
+      <article class="item"><div class="cat"><i class="fas fa-boxes-stacked"></i> Enterprise</div><div><h3>Textile inventory system</h3><p>Stock tracking, supplier management, fabric categories and live inventory updates.</p><p class="for"><b>Built for:</b> textile businesses managing many fabrics, suppliers and purchases.</p><ul class="feat"><li>Fabric and category tracking</li><li>Supplier records and purchases</li><li>Real-time stock levels</li></ul></div><div class="stack"><span>Laravel</span><span>Vue.js</span><span>MySQL</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><h2>How I can help</h2><p>From the first database schema to support after launch.</p></div>
+    <div class="svc">
+      <div class="s"><i class="fas fa-laptop-code"></i><div><h3>Web application development</h3><p>Custom Laravel and Vue.js applications, from simple sites to complex business systems.</p></div></div>
+      <div class="s"><i class="fas fa-mobile-screen"></i><div><h3>Responsive interfaces</h3><p>Screens that work well on every device, built with Tailwind CSS and Bootstrap.</p></div></div>
+      <div class="s"><i class="fas fa-plug"></i><div><h3>API development and integration</h3><p>Secure, documented RESTful APIs and third-party service integrations.</p></div></div>
+      <div class="s"><i class="fas fa-database"></i><div><h3>Database design</h3><p>Schemas that protect data integrity and stay fast as your data grows.</p></div></div>
+      <div class="s"><i class="fas fa-gauge-high"></i><div><h3>Performance optimization</h3><p>I find bottlenecks in existing applications and fix them.</p></div></div>
+      <div class="s"><i class="fas fa-headset"></i><div><h3>Support and maintenance</h3><p>Reliable fixes and updates after launch so your system keeps running.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="process" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><h2>How a project runs</h2><p>A simple four-step process so you always know what happens next.</p></div>
+    <div class="steps">
+      <div><span>1</span><h3>Discover</h3><p>We agree on goals, users, features and a realistic timeline.</p></div>
+      <div><span>2</span><h3>Design</h3><p>I plan the database, workflows and screens before writing code.</p></div>
+      <div><span>3</span><h3>Build</h3><p>Development in small milestones, with demos you can review.</p></div>
+      <div><span>4</span><h3>Launch and support</h3><p>Deployment, training notes and ongoing fixes and updates.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="engage" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><h2>Ways to work together</h2><p>Pick the arrangement that fits your project and budget.</p></div>
+    <div class="eng">
+      <div><i class="fas fa-diagram-project"></i><h3>Fixed-scope project</h3><p>A defined system delivered against an agreed scope and timeline.</p><ul><li>Written feature list</li><li>Milestone-based delivery</li><li>Handover and documentation</li></ul></div>
+      <div><i class="fas fa-user-clock"></i><h3>Monthly engagement</h3><p>Ongoing development time for products that keep growing.</p><ul><li>Dedicated weekly hours</li><li>Flexible priorities</li><li>Regular progress updates</li></ul></div>
+      <div><i class="fas fa-screwdriver-wrench"></i><h3>Support and maintenance</h3><p>Keep a live system stable, secure and up to date.</p><ul><li>Bug fixes and updates</li><li>Performance checks</li><li>Quick response on issues</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills">
+  <div class="wrap">
+    <div class="head"><h2>Tools I work with</h2><p>Full stack, from the database to the browser.</p></div>
+    <div class="sk">
+      <div><h3><i class="fas fa-server"></i> Backend</h3><ul><li>Laravel and PHP</li><li>REST APIs and authentication</li><li>MySQL and query optimization</li><li>Role-based access control</li><li>Queues, jobs and WebSockets</li><li>Git and GitHub</li></ul></div>
+      <div><h3><i class="fas fa-window-maximize"></i> Frontend</h3><ul><li>Vue.js</li><li>Inertia.js</li><li>JavaScript and jQuery</li><li>HTML5 and CSS3</li></ul></div>
+      <div><h3><i class="fas fa-swatchbook"></i> Interface</h3><ul><li>Tailwind CSS</li><li>Bootstrap</li><li>Responsive design</li><li>Reports and dashboards</li><li>Printable receipts and invoices</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="head"><h2>Experience and education</h2><p>Where I have worked and studied.</p></div>
+    <div class="xp">
+      <div class="when">2022 to present<small>Xelent Solutions</small></div>
+      <div><h3>Web Developer</h3><div class="org">Xelent Solutions</div>
+        <ul>
+          <li>Designed and built a Pharmacy POS system with real-time features</li>
+          <li>Led development of a Hospital Management System with multiple modules</li>
+          <li>Built a Textile Inventory Management System for stock control</li>
+          <li>Worked with cross-functional teams on user-centered solutions</li>
+          <li>Implemented secure API integrations for third-party services</li>
+          <li>Optimized database queries and application performance on live systems</li>
+          <li>Reviewed code and documented features so teams can maintain them</li>
+        </ul></div>
+    </div>
+    <div class="xp">
+      <div class="when">2020 to 2022<small>GCUF</small></div>
+      <div><h3>Associate Degree in Information Technology</h3><div class="org">GCUF</div>
+        <ul><li>Software development, database systems and web technologies</li><li>Coursework in advanced programming, algorithms and system design</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><h2>Questions clients ask</h2><p>Quick answers before we talk.</p></div>
+    <div class="faq">
+      <details><summary>How long does a project take?</summary><p>It depends on scope. A focused module can take a few weeks, and a full system such as a POS or hospital platform is usually planned in milestones over a few months. You get a realistic timeline after the discovery call.</p></details>
+      <details><summary>Can you work on my existing Laravel project?</summary><p>Yes. I can add features, fix bugs, upgrade versions and improve slow queries in an existing Laravel or Vue.js codebase.</p></details>
+      <details><summary>Do you provide support after launch?</summary><p>Yes. I offer fixes and updates after deployment, either as needed or as an ongoing maintenance arrangement.</p></details>
+      <details><summary>How do we communicate during the project?</summary><p>You get regular progress updates and demos at each milestone. I am reachable by email, phone and WhatsApp, and I reply within 24 hours.</p></details>
+      <details><summary>Do you work with clients outside Pakistan?</summary><p>Yes. I work remotely with clients in different time zones and communicate in English and Urdu.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="wrap contact">
+    <div>
+      <h2>Have a project in mind?</h2>
+      <p>Tell me what you need built and I will reply with next steps within 24 hours.</p>
+      <a class="mail" href="mailto:inzamammalick501@gmail.com">inzamammalick501@gmail.com</a>
+      <div class="det">
+        <div><i class="fas fa-phone"></i><a href="tel:+923346081794">+92 334-6081794</a></div>
+        <div><i class="fab fa-whatsapp"></i><a href="https://wa.me/923346081794" target="_blank" rel="noopener">Message on WhatsApp</a></div>
+        <div><i class="fas fa-location-dot"></i><span>Faisalabad, Pakistan</span></div>
+      </div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/inzamam-malick-b8053a246/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/inzamammalick501" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.facebook.com/malick.inzamamulhaq" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/inzamam976/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <form id="form" novalidate>
+      <div class="f2">
+        <div><label for="n">Your name</label><input id="n" name="from_name" autocomplete="name" required></div>
+        <div><label for="e">Your email</label><input id="e" name="from_email" type="email" autocomplete="email" required></div>
+      </div>
+      <div class="f2">
+        <div><label for="s">Subject</label><input id="s" name="subject"></div>
+        <div><label for="t">Project type</label>
+          <select id="t"><option>Web application</option><option>POS system</option><option>Hospital or inventory system</option><option>API or integration</option><option>Maintenance or fixes</option><option>Other</option></select></div>
+      </div>
+      <div><label for="m">Message</label><textarea id="m" name="message" required></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="hp">Leave this empty</label><input id="hp" tabindex="-1" autocomplete="off"></div>
+      <p class="fstatus" id="fstatus" role="status" aria-live="polite"></p>
+      <button class="btn btn-neon" type="submit" id="send">Send message</button>
+    </form>
+  </div>
+</section>
+
+<footer><div class="wrap foot"><span class="logo">Inzamam<span style="color:var(--neon)">.</span></span><span>© <span id="yr">2026</span> Inzamam Ul Haq. All rights reserved.</span></div></footer>
+<button class="top" id="top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+<script>
+const nav=document.getElementById('nav'),secs=[...document.querySelectorAll('section[id]')],links=document.querySelectorAll('.links a'),topBtn=document.getElementById('top');
+addEventListener('scroll',()=>{
+  nav.classList.toggle('solid',scrollY>30);
+  topBtn.classList.toggle('show',scrollY>700);
+  let cur='';secs.forEach(s=>{if(scrollY>=s.offsetTop-180)cur=s.id});
+  links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+topBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+const b=document.getElementById('burger'),d=document.getElementById('drawer');
+b.addEventListener('click',()=>{const o=d.classList.toggle('open');b.setAttribute('aria-expanded',o);b.querySelector('i').className=o?'fas fa-times':'fas fa-bars'});
+d.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{d.classList.remove('open');b.querySelector('i').className='fas fa-bars'}));
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* ===== EmailJS: paste your 3 values from the emailjs.com dashboard ===== */
+const EMAILJS={publicKey:'w4O8TxyNFGgZNQkBu',serviceId:'service_cau0hne',templateId:'template_1l2s3vs'};
+const MY_EMAIL='inzamammalick501@gmail.com';
+const configured=!Object.values(EMAILJS).some(v=>v.startsWith('YOUR_'));
+if(configured&&window.emailjs)emailjs.init({publicKey:EMAILJS.publicKey});
+
+const form=document.getElementById('form'),st=document.getElementById('fstatus'),btn=document.getElementById('send');
+const val=i=>document.getElementById(i).value.trim();
+const say=(t,c)=>{st.textContent=t;st.className='fstatus '+(c||'')};
+const emailOk=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+let last=+localStorage.getItem('lastSend')||0;
+
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  if(val('hp'))return; // spam bots fill the hidden field
+  if(!val('n')||!emailOk(val('e'))||val('m').length<10){say('Please enter your name, a valid email and a message of at least 10 characters.','err');return}
+  if(Date.now()-last<30000){say('Please wait a few seconds before sending another message.','err');return}
+  const params={
+    to_email:MY_EMAIL,
+    from_name:val('n'),from_email:val('e'),reply_to:val('e'),
+    subject:val('s')||'Portfolio inquiry',
+    project_type:document.getElementById('t').value,
+    message:val('m'),
+    time:new Date().toLocaleString()
+  };
+  if(!configured||!window.emailjs){
+    say('Email service is not configured yet. Opening your email app instead.','err');
+    location.href='mailto:'+MY_EMAIL+'?subject='+encodeURIComponent(params.subject)+'&body='+encodeURIComponent(params.message+'\n\nProject type: '+params.project_type+'\nFrom: '+params.from_name+' ('+params.from_email+')');
+    return;
+  }
+  btn.disabled=true;btn.textContent='Sending...';say('');
+  emailjs.send(EMAILJS.serviceId,EMAILJS.templateId,params)
+    .then(()=>{last=Date.now();localStorage.setItem('lastSend',last);say('Message sent. Thank you, I will reply within 24 hours.','ok');form.reset()})
+    .catch(()=>say('Could not send the message. Please email me directly at '+MY_EMAIL+'.','err'))
+    .finally(()=>{btn.disabled=false;btn.textContent='Send message'});
+});
+</script>
 </body>
 </html>
